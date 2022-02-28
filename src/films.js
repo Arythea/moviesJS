@@ -95,15 +95,21 @@ function moviesAverageByCategory( arrayMovies, category ) {
 function hoursToMinutes(arrayMovies) {
   return arrayMovies.map( ( movie ) => { 
     const [hours = 0, minutes = 0] = movie.duration.split(' ');
-    newMovie = {...movie};
+    let newMovie = {...movie};
     newMovie.duration = parseInt(hours) * 60 + parseInt(minutes);
     return newMovie;
   });
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
+function bestFilmOfYear(arrayMovies, year) {
+  return arrayMovies.filter( movie => movie.year == year ).sort( (prev, curr) => {
+    if ( prev.score > curr.score ) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }).slice(0,1);
 }
 
 
